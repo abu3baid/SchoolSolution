@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Models;
+using SchoolProject.Repository;
 
 namespace SchoolProject.Controllers
 {
     public class RoomController : Controller
     {
-        private readonly ITeacherRepository _teacherRepository;
+        private readonly IRoomRepository _roomRepository;
 
-        public TeacherController(ITeacherRepository teacherRepository)
+        public RoomController(IRoomRepository roomRepository)
         {
-            _teacherRepository = teacherRepository;
+            _roomRepository = roomRepository;
         }
 
 
         [HttpGet]
         public ActionResult index()
         {
-            List<Teacher> teachers = _teacherRepository.GetAllTeachers();
+            List<Room> room = _roomRepository.GetAllRooms();
             return View();
         }
         [HttpGet]
@@ -24,11 +26,11 @@ namespace SchoolProject.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Teacher teacher)
+        public ActionResult Create(Room room)
         {
-            if (teacher != null)
+            if (room != null)
             {
-                _teacherRepository.Create(teacher);
+                _roomRepository.Create(room);
             }
             return View();
         }
@@ -37,7 +39,7 @@ namespace SchoolProject.Controllers
         {
             if (id > 0)
             {
-                _teacherRepository.Delete(id);
+                _roomRepository.Delete(id);
             }
             return View();
         }
