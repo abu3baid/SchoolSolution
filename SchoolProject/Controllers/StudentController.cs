@@ -1,15 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Models;
+using SchoolProject.Repository;
 
 namespace SchoolProject.Controllers
 {
     public class StudentController : Controller
     {
+        private readonly IStudentRepository _studentRepository;
+
+        public StudentController(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
+
+
+
         //List of Students
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            List<Student> stdLst = _studentRepository.GetAllStudents();
         }
 
         //Render The creation view
