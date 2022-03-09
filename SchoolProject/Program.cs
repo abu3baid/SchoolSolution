@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("MyDbConnection")));
 builder.Services.AddTransient<IStudentRepository, StudentRepository>();
+builder.Services.AddTransient<ITeacherRepository, TeacherRepository>();
 
 var app = builder.Build();
 
