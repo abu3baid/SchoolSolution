@@ -14,7 +14,7 @@ namespace SchoolProject.Repository
 
         public void Create(Room room)
         {
-            _myDbContext.Room.Add(room);
+            _myDbContext.Rooms.Add(room);
             _myDbContext.SaveChanges();
         }
 

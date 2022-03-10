@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Models;
+using SchoolProject.Repository;
 
 namespace SchoolProject.Controllers
 {

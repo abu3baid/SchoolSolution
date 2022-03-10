@@ -14,7 +14,7 @@ namespace SchoolProject.Repository
 
         public void Create(Course course)
         {
-            _myDbContext.Course.Add(course);
+            _myDbContext.Courses.Add(course);
             _myDbContext.SaveChanges();
         }
 
