@@ -15,7 +15,7 @@ namespace SchoolProject.Controllers
 
 
         [HttpGet]
-        public ActionResult index()
+        public ActionResult Index()
         {
             List<Course> courses = _courseRepository.GetAllCourses();
             return View();
