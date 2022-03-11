@@ -20,10 +20,11 @@ namespace SchoolProject.Controllers
         public ActionResult Index()
         {
             List<Student> stdLst = _studentRepository.GetAllStudents();
-            return View();
+            return View(stdLst);
         }
 
         //Render The creation view
+        [HttpGet]
         public ViewResult Create()
         {
             return View();
@@ -32,13 +33,19 @@ namespace SchoolProject.Controllers
         [HttpPost]
         public ActionResult Create(Student student)
         {
-            _studentRepository.Create(student);
+            if(student != null)
+            {
+                _studentRepository.Create(student);
+            }
             return View();
         }
 
         public ViewResult Delete(int id)
         {
-            _studentRepository.Delete(id);
+            if(id != 0)
+            {
+                _studentRepository.Delete(id);
+            }
             return View();
         }
 
