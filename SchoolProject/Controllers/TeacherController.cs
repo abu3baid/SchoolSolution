@@ -18,7 +18,7 @@ namespace SchoolProject.Controllers
         public ActionResult Index()
         {
             List<Teacher> teachers = _teacherRepository.GetAllTeachers();
-            return View();
+            return View(teachers);
         }
         [HttpGet]
         public ViewResult Create()
@@ -32,7 +32,8 @@ namespace SchoolProject.Controllers
             {
                 _teacherRepository.Create(teacher);
             }
-            return View();
+            List<Teacher> teachers = _teacherRepository.GetAllTeachers();
+            return View("Index", teachers);
         }
 
         public ActionResult Delete(int id)
@@ -41,7 +42,8 @@ namespace SchoolProject.Controllers
             {
                 _teacherRepository.Delete(id);
             }
-            return View();
+            List<Teacher> teachers = _teacherRepository.GetAllTeachers();
+            return View("Index", teachers);
         }
     }
 }

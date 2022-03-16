@@ -7,10 +7,12 @@ namespace SchoolProject.Controllers
     public class CourseController : Controller
     {
         private readonly ICourseRepository _courseRepository;
+        private readonly ITeacherRepository _teacherRepository;
 
-        public CourseController(ICourseRepository courseRepository)
+        public CourseController(ICourseRepository courseRepository, ITeacherRepository teacherRepository)
         {
             _courseRepository = courseRepository;
+            _teacherRepository = teacherRepository;
         }
 
 
@@ -18,12 +20,13 @@ namespace SchoolProject.Controllers
         public ActionResult Index()
         {
             List<Course> courses = _courseRepository.GetAllCourses();
-            return View();
+            return View(courses);
         }
         [HttpGet]
         public ViewResult Create()
         {
-            return View();
+            List<Teacher> teachers = _teacherRepository.GetAllTeachers();
+            return View(teachers);
         }
         [HttpPost]
         public ActionResult Create(Course course)
@@ -32,7 +35,8 @@ namespace SchoolProject.Controllers
             {
                 _courseRepository.Create(course);
             }
-            return View();
+            List<Course> courses = _courseRepository.GetAllCourses();
+            return View("Index", courses);
         }
 
         public ActionResult Delete(int id)
@@ -41,7 +45,8 @@ namespace SchoolProject.Controllers
             {
                 _courseRepository.Delete(id);
             }
-            return View();
+            List<Course> courses = _courseRepository.GetAllCourses();
+            return View("Index", courses);
         }
     }
 }

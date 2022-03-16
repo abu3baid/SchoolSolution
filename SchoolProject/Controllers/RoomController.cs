@@ -17,8 +17,8 @@ namespace SchoolProject.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<Room> room = _roomRepository.GetAllRooms();
-            return View();
+            List<Room> rooms = _roomRepository.GetAllRooms();
+            return View(rooms);
         }
         [HttpGet]
         public ViewResult Create()
@@ -32,7 +32,8 @@ namespace SchoolProject.Controllers
             {
                 _roomRepository.Create(room);
             }
-            return View();
+            List<Room> rooms = _roomRepository.GetAllRooms();
+            return View("Index", rooms);
         }
 
         public ActionResult Delete(int id)
@@ -41,7 +42,8 @@ namespace SchoolProject.Controllers
             {
                 _roomRepository.Delete(id);
             }
-            return View();
+            List<Room> rooms = _roomRepository.GetAllRooms();
+            return View("Index", rooms);
         }
     }
 }
