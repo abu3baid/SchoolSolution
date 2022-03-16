@@ -1,6 +1,5 @@
 ﻿@model List<Student>
 
-<link href="~/css/Table.css" rel="stylesheet">
 <table>
     <tr>
         <th>
@@ -8,6 +7,9 @@
         </th>
         <th>
             Student Age
+        </th>
+        <th>
+            Delete
         </th>
     </tr>
     @foreach(Student student in Model)
@@ -19,6 +21,9 @@
             </td>
             <td>
                 @student.StudentAge
+            </td>
+            <td>
+                <a href="/Student/Delete/@student.StudentId">Delete @student.StudentName</a>
             </td>
         </tr>
     }
