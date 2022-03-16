@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Models;
+using SchoolProject.Models.ViewModels;
 using SchoolProject.Repository;
 
 namespace SchoolProject.Controllers
@@ -7,10 +8,12 @@ namespace SchoolProject.Controllers
     public class StudentController : Controller
     {
         private readonly IStudentRepository _studentRepository;
+        private readonly ICourseRepository _courseRepository;
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentController(IStudentRepository studentRepository, ICourseRepository courseRepository)
         {
             _studentRepository = studentRepository;
+            _courseRepository = courseRepository;
         }
 
 
@@ -54,14 +57,17 @@ namespace SchoolProject.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            return View();
+            StudentCourseVM data = new StudentCourseVM();
+            data.Courses = _courseRepository.GetAllCourses();
+            data.Students = _studentRepository.GetAllStudents();
+            return View(data);
         }
 
         [HttpPost]
         public ActionResult Register(int studentId, int courseId)
         {
             _studentRepository.Register(studentId, courseId);
-            return View();
+            return RedirectToAction("Register");
         }
     }
 }

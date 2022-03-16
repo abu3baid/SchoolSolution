@@ -1,7 +1,42 @@
-﻿
-@{
-    ViewData["Title"] = "Register";
-}
+﻿@model SchoolProject.Models.ViewModels.StudentCourseVM
 
-<h1>Register</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Back to Homepage</a>
 
+<div class="container">
+
+    <form action="Register" method="post">
+
+        <div class="row">
+            <div class="col-25">
+                <label for="Student">Students</label>
+            </div>
+            <div class="col-75">
+                <select id="StudentId" name="StudentId">
+
+                    @foreach(Student student in Model.Students)
+                    {
+                        <option value="@student.StudentId">@student.StudentName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="Teacher">Courses</label>
+            </div>
+            <div class="col-75">
+                <select id="CourseId" name="CourseId">
+                    @foreach(Course course in Model.Courses)
+                    {
+                        <option value="@course.CourseId">@course.CourseName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Register" />
+        </div>
+    </form>
+</div>
