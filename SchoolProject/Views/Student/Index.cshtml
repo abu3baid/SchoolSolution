@@ -1,5 +1,11 @@
 ﻿@model List<Student>
 
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Create">Add new student</a>
+
+<br />
+
+
 <table>
     <tr>
         <th>
@@ -23,7 +29,7 @@
                 @student.StudentAge
             </td>
             <td>
-                <a href="/Student/Delete/@student.StudentId">Delete @student.StudentName</a>
+                <a href="/Student/Delete/@student.StudentId">X</a>
             </td>
         </tr>
     }

@@ -37,7 +37,8 @@ namespace SchoolProject.Controllers
             {
                 _studentRepository.Create(student);
             }
-            return View();
+            List<Student> stdLst = _studentRepository.GetAllStudents();
+            return View("Index", stdLst);
         }
 
         public ViewResult Delete(int id)
@@ -46,7 +47,8 @@ namespace SchoolProject.Controllers
             {
                 _studentRepository.Delete(id);
             }
-            return View();
+            List<Student> stdLst = _studentRepository.GetAllStudents();
+            return View("Index", stdLst);
         }
 
         [HttpGet]
